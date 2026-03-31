@@ -860,6 +860,10 @@ h2.section-title {
     color: var(--accent);
 }
 
+#contact a {
+    text-decoration: none;
+}
+
 .cform {
     background: var(--card);
     border: 1px solid var(--border);
