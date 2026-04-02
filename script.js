@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { 
-      if (e.isIntersecting) e.target.classList.add('visible'); 
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => { 
-      if (window.scrollY >= s.offsetTop - 100) current = s.id; 
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
     });
 
     navLinks.forEach(a => {
@@ -31,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ✅ CONTACT FORM
+
+  (function () {
+    emailjs.init("mlKE4KLiQJrSffF4P"); // your public key
+  })();
+
   const form = document.getElementById('contactForm');
 
   if (!form) return; // safety check
@@ -61,23 +66,23 @@ document.addEventListener("DOMContentLoaded", function () {
       service: service,
       message: message
     })
-    .then(() => {
-      btn.disabled = false;
-      btnText.textContent = 'Send Message ✦';
+      .then(() => {
+        btn.disabled = false;
+        btnText.textContent = 'Send Message ✦';
 
-      document.getElementById('successToast').classList.add('show');
-      form.reset();
+        document.getElementById('successToast').classList.add('show');
+        form.reset();
 
-      setTimeout(() => {
-        document.getElementById('successToast').classList.remove('show');
-      }, 6000);
-    })
-    .catch((error) => {
-      console.error(error);
-      btn.disabled = false;
-      btnText.textContent = 'Send Message ✦';
-      alert('❌ Failed to send email');
-    });
+        setTimeout(() => {
+          document.getElementById('successToast').classList.remove('show');
+        }, 6000);
+      })
+      .catch((error) => {
+        console.error(error);
+        btn.disabled = false;
+        btnText.textContent = 'Send Message ✦';
+        alert('❌ Failed to send email');
+      });
   });
 
 });
